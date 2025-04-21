@@ -3,7 +3,7 @@ mod encoding;
 use std::{char, result};
 
 use ascii::{AsciiChar, ToAsciiChar, AsciiStr};
-use encoding::encode::encoding::{encode_empty_data, encode_single_byte, encode_short_string};
+use encoding::encode::encoding::{encode_empty_data, encode_single_byte, encode_short_string, encode_long_string};
 
 
 fn main() {
@@ -33,11 +33,12 @@ fn main() {
     // let result = encode_single_byte(charac);
     // println!("The result for encoding a single byte is: {:?}", result);
 
-    let result = encode_short_string("dog");
+    let result = encode_long_string("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123");
 
     println!("The result of the op is: {:?}", result);
 
 }
+
 
 
 

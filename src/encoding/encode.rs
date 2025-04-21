@@ -45,6 +45,38 @@ pub mod encoding {
          Some(char_to_hex)
      }
 
+     pub fn encode_long_string(data: &str) -> Option<Vec<String>> {
+        let ascii_str = AsciiStr::from_ascii(data).expect("Invalid ascii data");
+    
+        let char_data: Vec<char> = data.chars().collect();
+    
+        if char_data.len() <= 55 {
+            return None
+        }
+    
+        let string_length = char_data.len();
+    
+        let string_length_hex = format!("0x{:02x}", string_length as u8);
+        let append_data = format!("0x{:02x}", 0xb7 + 1 as u8);
+    
+        
+    
+    
+        let mut char_to_hex: Vec<String> = ascii_str.as_bytes()
+                                         .iter()
+                                         .map(|b| format!("0x{:02x}", b))
+                                         .collect();
+        
+    
+    
+        char_to_hex.insert(0, append_data);
+        char_to_hex.insert(1, string_length_hex);
+    
+        Some(char_to_hex)
+    
+    }
+    
+
     
 
     fn check_type<T>(_: &T) -> &str {

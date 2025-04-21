@@ -1,4 +1,5 @@
-use std::{any::type_name, result};
+use std::any::type_name;
+use ascii::AsciiChar;
 
 pub mod encoding {
 
@@ -14,6 +15,13 @@ pub mod encoding {
         } else {
             None
         }
+    }
+
+    pub fn encode_single_byte(data: char) -> Option<String> {
+        let encode_data = AsciiChar::from_ascii(data);
+        let char_to_hex = encode_data.unwrap().as_byte();
+        let encoded_data = format!("0x{:02x}", char_to_hex);
+        Some(encoded_data)
     }
 
     

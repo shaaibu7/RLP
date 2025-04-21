@@ -1,7 +1,9 @@
 mod encoding;
 
+use std::{char, result};
+
 use ascii::{AsciiChar, ToAsciiChar, AsciiStr};
-use encoding::encode::encoding::encode_empty_data;
+use encoding::encode::encoding::{encode_empty_data, encode_single_byte};
 
 
 fn main() {
@@ -26,9 +28,12 @@ fn main() {
     let encode_res = encode_empty_data(bool);
     
 
-    println!("The result of the encoding is: {:?}", encode_res);
-
+    // println!("The result of the encoding is: {:?}", encode_res);
+    let charac = 'T';
+    let result = encode_single_byte(charac);
+    println!("The result for encoding a single byte is: {:?}", result);
 
 }
+
 
 
